@@ -1,0 +1,139 @@
+body{
+    margin:0;
+    background:url("../image/weather.jpg");
+    background-size:cover;
+}
+.display-background{
+    height:100vh;
+    background:rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction:column;
+    
+}
+header{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    overflow:auto;
+    color:white;
+    /*text-align:center;*/
+    align-items:center;
+    margin:20px 50px;
+    overflow:visible;
+}
+main{
+    display:flex;
+    justify-content:flex-end;
+    flex-direction:column;
+    margin:20px 50px;
+    text-align:center;
+    color:white;
+    overflow:auto;
+    flex-grow:1;
+}
+.menu{
+    flex-grow:1;
+}
+.menu-item{
+    display:inline-block;
+    padding:0 5px;
+}
+.weather{
+    flex-grow:1;
+}
+.search-bar{
+    flex-grow:1;
+}
+.search-bar input{
+   display:inline-block;
+   max-width:100px;
+   border:0;
+   background:rgba(255,255,255,0.5);
+   padding:6px 8px;
+}
+.search-bar form{
+    float:right;
+}
+.search-bar form::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+.search-area{
+    display:inline-block;
+    position:relative;
+    color:white;
+}
+.search-icon{
+    position:absolute;
+    right:3px;
+    top:6px;
+}
+.search-result{
+    position:absolute;
+    top:101%;
+    left:0;
+    /*display:none;*/
+}
+
+.location{
+    font-size:32px;
+    margin-bottom:10px;
+}
+.temp-show{
+    margin: 30px 0;
+    text-align: left;
+    
+}
+.weather-detail{
+    display:flex;
+    justify-content:flex-start;
+}
+.weather-detail>div{
+    padding:20px;
+}
+.temp{
+    font-size:64px;
+    font-weight:100;
+    font-family:sans-serif, monospace;
+}
+.temp::after{
+    content:"\00b0";
+    /*vertical-align:top;
+    font-size: 24px;
+    padding-top:5px;*/
+}
+.weather-icon{
+    padding-right:10px;
+}
+.weather-humidity::before{
+    content:"";
+    display:inline-block;
+    width:1rem;
+    height:1rem;
+    background:#0cf;
+    vertical-align: text-bottom;
+    border-radius:100% 0 60% 50%/60% 0 100% 50%;
+    transform: rotate(-45deg) scale(0.7);
+}
+
+@media (max-width:600px){
+    .search-area{
+        /*position:absolute;*/
+        /*right:10px;*/
+        box-sizing:border-box;
+        width:0px;
+        transition:width 1s;
+    }
+    .search-area input{
+        padding-left:0;
+        padding-right:0;
+        width:inherit;
+    }
+    .search-area:hover{
+        width:100px;
+    }
+}
+
+
+

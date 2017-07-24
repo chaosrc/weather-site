@@ -1,0 +1,17 @@
+{
+  "name": "weather",
+  "version": "0.0.1",
+  "description": "a simple weather page",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "chao",
+  "license": "ISC"
+}

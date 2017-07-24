@@ -1,0 +1,14 @@
+key:02b316212183c78c92fdf6d9cee1cce5
+url:api.openweathermap.org/data/2.5/forecast?q=Shanghai&APPID=02b316212183c78c92fdf6d9cee1cce5
+http://api.openweathermap.org/data/2.5/forecast?q=Shanghai&APPID=02b316212183c78c92fdf6d9cee1cce5
+
+b1b15e88fa797225412429c1c50c122a1
+
+https://openweathermap.org/data/2.5/find?callback=jQuery19108060005638924876_1500602930147&q=Shanghai&type=like&sort=population&cnt=30&appid=b1b15e88fa797225412429c1c50c122a1&_=1500602930148
+https://openweathermap.org/data/2.5/find?q=Shanghai&appid=b1b15e88fa797225412429c1c50c122a1
+http://api.openweathermap.org/data/2.5/find?q=Shanghai&APPID=b1b15e88fa797225412429c1c50c122a1
+
+http://api.openweathermap.org/data/2.5/find?q=guangzhou&APPID=02b316212183c78c92fdf6d9cee1cce5
+
+var img =  "http://openweathermap.org/img/w/" +JSONobject.list[i].weather[0].icon + ".png";
+    var flag = "http://openweathermap.org/images/flags/" +JSONobject.list[i].sys.country.toLowerCase()  + ".png";
