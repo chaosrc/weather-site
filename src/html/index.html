@@ -11,17 +11,23 @@
         <div class="display-background">
         <header>
             <div class="menu">
-                <div class="menu-item">Celsius</div>
-                <div class="menu-item">中文</div>
+                <div class="menu-item">
+                    <label class="radio-container"><input type="radio" name="unit" checked value="c"> <span>°C</span> <div class="radio-button"></div></label>
+                    <label class="radio-container"><input type="radio" name="unit" value="f"> <span>°F</span> <div class="radio-button"></div></label>
+                    
+                </div>
+                <!--<div class="menu-item">中文</div>-->
             </div>
             <div class="weather-location">
-                <div class="location">上海</div>
-                 <div class="currant-time">7月21日 2017</div>
+                <div>
+                  <div class="location">上海</div>
+                  <div class="current-time">7月21日 2017</div>
+                </div>
             </div>
             <div class="search-bar">
                 <form action="">
                     <div class="search-area">
-                        <input type="text" placeholder="search a city">
+                        <input type="search" placeholder="search a city">
                         <i class="fa fa-search search-icon" aria-hidden="true"></i>
                         <div class="search-result">
                             <p>shanghai</p>
@@ -38,10 +44,10 @@
                 <img class="weather-icon" src="http://openweathermap.org/img/w/01n.png" alt="icon"><span class="temp">39</span><span class="weather-description">晴</span>
             </div>
             <div class="weather-detail">
-                <div class="temp-max">&UpArrow; 40 °C</div>
-                <div class="temp-min">&darr; 40 °C</div>
-                <div class="weather-humidity">50&#37;</div>
-                <div class="weather-wind">6m/s</div>
+                <div class="temp-max"> --</div>
+                <div class="temp-min">--</div>
+                <div class="weather-humidity">--</div>
+                <div class="weather-wind">--</div>
             </div>
             <div class="future-weather"></div>
         </main>   

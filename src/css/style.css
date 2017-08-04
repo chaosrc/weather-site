@@ -38,6 +38,65 @@ main{
     display:inline-block;
     padding:0 5px;
 }
+.radio-container{
+    position:relative;
+    display:inline-block;
+    margin:10px;
+}
+.radio-button{
+    display:inline-block;
+    position:absolute;;
+    height:1em;
+    width:1em;
+    vertical-align:baseline;
+    border:2px #aaaaaa solid;
+    border-radius: 50%;
+    top:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    font-size:0.7em;
+    transition:all 0.3s;
+}
+.radio-container > input[type="radio"]{
+    visibility:hidden;
+    margin:0;
+
+}
+.radio-container:hover{
+    opacity:0.8;
+    cursor:pointer;
+}
+.radio-button::before{
+    content:"";
+    position:absolute;
+    height:0.5em;
+    width:0.5em;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    /*top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:auto;*/
+    display:inline-block;
+    background:#aaaaaa;
+    border-radius: 50%;
+    transition:all 0.3s;
+}
+.radio-container > input[type="radio"] + span{
+    transition:all 0.3s;
+}
+.radio-container > input[type="radio"]:checked ~ .radio-button{
+    border-color: #0cf
+}
+.radio-container > input[type="radio"]:checked ~ .radio-button::before{
+    background: #0cf
+}
+.radio-container > input[type="radio"]:checked + *{
+    color:#0cf;
+}
 .weather{
     flex-grow:1;
 }
@@ -80,6 +139,9 @@ main{
     font-size:32px;
     margin-bottom:10px;
 }
+.weather-location>div{
+    text-align:center;
+}
 .temp-show{
     margin: 30px 0;
     text-align: left;
@@ -115,6 +177,22 @@ main{
     vertical-align: text-bottom;
     border-radius:100% 0 60% 50%/60% 0 100% 50%;
     transform: rotate(-45deg) scale(0.7);
+    margin-bottom:2px;
+    margin-left:2px;
+}
+.weather-wind::after{
+    content:"m/s";
+}
+.weather-humidity::after{
+    content:"%";
+}
+.temp-max::before{
+    content:"\2191  ";
+    color:#0cf;
+}
+.temp-min::before{
+    content:"\2193  ";
+    color:#0cf;
 }
 
 @media (max-width:600px){

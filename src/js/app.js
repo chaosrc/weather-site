@@ -1,3 +1,4 @@
+let weatherDataHolder;
 /**
  * query city name form ip
  */
@@ -45,51 +46,7 @@ function getWeatherDataEN(city, cb, lang) {
     let url = 'https://openweathermap.org/data/2.5/find?appid=b1b15e88fa797225412429c1c50c122a1';
     url = `${url}&q=${city}`;
     if(lang) url = `${url}&lang=${lang}`;
-    jsonp(url, 'callback', (json) => {
-        cb(json);
-    });
-}
-function getLocalStorage() {
-    //TODO:get data from local storage
-    return {
-        tempUnit: 'C',
-        lang: 'en'
-     };
-}
-function getWeatherDataCN() {
-    //TODO:get chinese data from another api
-}
-function updateWeather(data) {
-    //TODO:calculate temperature;
-    let iconEle = document.getElementsByClassName('weather-icon');
-    iconEle.src = `"http://openweathermap.org/img/w/"${data.icon}.png`;
-    console.log(data);
-    jsonToDOM({
-        "location": data.city,
-        "temp": data.temp - 273.15,
-        "weather-description": data.description,
-        "temp-min": data.temp_min - 273.15,
-        "temp-max": data.temp_max - 273.15,
-        "weather-wind": data.wind,
-        "weather-humidity": data.humidity
-    });
-}
-function calcuTemperature(temp,unit) {
-    //TODO:kelvin temp to C/F
-}
-function jsonToDOM(obj) {
-    for (let key in obj) {
-        let ele=document.getElementsByClassName(key)[0];
-        ele.innerHTML = obj[key];
-    }
-}
-
-window.addEventListener('load', (e) => {
-    let localData = getLocalStorage();
-    let getWeatherData = getWeatherDataEN;
-    if(localData.lang === 'zh_cn') getWeatherData = getWeatherDataCN;
-    getCityName((name) => {
-        getWeatherData(name, (data) => {
+    jsonp(url, 'callback', (data) => {
             let code = data.code;
             let item = data.list[0];
             let dt = {
@@ -102,7 +59,74 @@ window.addEventListener('load', (e) => {
                 description: item.weather[0].description,
                 icon: item.weather[0].icon
             };
-            updateWeather(dt);
+        cb(dt);
+    });
+}
+
+function getWeatherDataCN() {
+    //TODO:get chinese data from another api
+}
+function updateWeather(data) {
+    let iconEle = document.getElementsByClassName('weather-icon');
+    iconEle.src = `"http://openweathermap.org/img/w/"${data.icon}.png`;
+    let tempUnit=localStorage.getItem('temp_unit') || 'c';
+    jsonToDOM({
+        "location": data.city,
+        "temp": calcuTemperature(data.temp, tempUnit, true),
+        "weather-description": data.description,
+        "temp-min":  calcuTemperature(data.temp_min, tempUnit),
+        "temp-max":  calcuTemperature(data.temp_max, tempUnit),
+        "weather-wind": data.wind,
+        "weather-humidity": data.humidity,
+        "current-time": (new Date()).toLocaleDateString()
+    });
+}
+function calcuTemperature(kelvin, unit, noUnit) {
+    //TODO:kelvin temp to C/F Fahrenheit
+    let temp = kelvin - 273.15;
+    let notation = '';
+    if(unit) {
+        unit = unit.toLowerCase();
+        notation = ' °C';
+        if (unit === 'f' || unit === '°f' || unit === 'fahrenheit') {
+        temp=temp * 9 / 5 + 32;
+        notation=' °F';
+         }
+    }
+    if(noUnit) notation='';
+    temp = Math.floor(temp * 10) / 10;
+    return `${temp.toString()}${notation}`;
+}
+function jsonToDOM(obj) {
+    for (let key in obj) {
+        let ele = document.getElementsByClassName(key)[0];
+        ele.innerHTML = obj[key];
+    }
+}
+
+window.addEventListener('load', (e) => {
+    let localData = localStorage;
+    let getWeatherData = getWeatherDataEN;
+    if(localData.lang === 'zh_cn') getWeatherData = getWeatherDataCN;
+    getCityName((name) => {
+        getWeatherData(name, (data) => {
+            weatherDataHolder=data
+            updateWeather(data);
+        });
+    });
+
+    //select temperature unit
+    let tempUnits = document.querySelectorAll('.menu-item input[type="radio"]');
+    each(tempUnits, function(ele){
+        ele.addEventListener('click', function() {
+            localStorage.setItem('temp_unit', ele.value);
+            updateWeather(weatherDataHolder);
         });
     });
 });
+
+function each(list, cb){
+    for(let i = 0; i < list.length; i++) {
+        cb(list[i], i);
+    }
+}
