@@ -3,10 +3,10 @@ let weatherDataHolder;
  * query city name form ip
  */
 function getCityName(cb) {
-    //http://www.geoplugin.net/json.gp?jsoncallback=
-   const url = 'http://www.geoplugin.net/json.gp';
-    jsonp(url, 'jsoncallback', (json) => {
-        cb(json.geoplugin_city, json.geoplugin_countryName);
+    //https://freegeoip.net/json/?callback=fn
+   const url = 'https://freegeoip.net/json';
+    jsonp(url, 'callback', (json) => {
+        cb(json.city, json.country_name);
     });
 }
 

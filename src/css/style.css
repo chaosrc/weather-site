@@ -102,6 +102,7 @@ main{
 }
 .search-bar{
     flex-grow:1;
+    visibility:hidden;
 }
 .search-bar input{
    display:inline-block;
